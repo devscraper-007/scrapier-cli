@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "scrapier"
+dynamic = ["version"]
+description = "Scrapier web-scraping API from your terminal: search endpoints and run scrapes for Instagram, TikTok, Amazon, Google Maps and more."
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = ["scrapier", "scraping", "web-scraping", "cli", "instagram", "tiktok", "amazon", "google-maps"]
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet :: WWW/HTTP",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/scrapierio-ai/scrapier-cli#readme"
+Source = "https://github.com/scrapierio-ai/scrapier-cli"
+
+[project.scripts]
+scrapier = "scrapier.cli:run_main"
+
+[tool.hatch.version]
+path = "src/scrapier/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/scrapier"]

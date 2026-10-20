@@ -1,0 +1,40 @@
+{
+  "name": "@scrapier/cli",
+  "version": "0.1.0",
+  "description": "Scrapier web-scraping API from your terminal: search endpoints and run scrapes for Instagram, TikTok, Amazon, Google Maps and more.",
+  "type": "module",
+  "bin": {
+    "scrapier": "bin/scrapier.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "test": "node --test ../tests/cli.test.mjs"
+  },
+  "keywords": [
+    "scrapier",
+    "scraping",
+    "web-scraping",
+    "cli",
+    "instagram",
+    "tiktok",
+    "amazon",
+    "google-maps"
+  ],
+  "homepage": "https://github.com/scrapierio-ai/scrapier-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scrapierio-ai/scrapier-cli.git",
+    "directory": "node"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

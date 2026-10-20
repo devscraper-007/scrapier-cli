@@ -1,0 +1,91 @@
+{
+  "base_url": "https://proxy.scrapier.io/api/v2",
+  "auth": { "type": "apiKey", "header": "X-API-Key" },
+  "billing": "Credits are charged per successful call; each endpoint lists its cost_credit per call. Failed calls are free.",
+  "endpoints": [
+    {
+      "platform": "google",
+      "apis": [
+        {
+          "endpoint": "/google-maps/",
+          "name": "Google Maps Places",
+          "cost_credit": 1,
+          "pagination": "cursor",
+          "input": {
+            "queries": { "type": "string", "required": true, "description": "Place search keyword.", "default_value": "coffee shops" },
+            "cursor": { "type": "string", "required": false, "description": "Pagination cursor.", "default_value": "" },
+            "location": { "type": "string", "required": false, "description": "City or address.", "default_value": "Houston,Texas" },
+            "use_proxy": { "type": "boolean", "required": false, "description": "Use the proxy pool.", "default_value": "true", "options": ["true", "false"] }
+          },
+          "sample_output": {
+            "formatted": { "queries": "coffee shops", "places": [{ "name": "Blue Bottle Coffee", "rating": 4.4 }], "next_cursor": "c2" },
+            "raw": { "queries": "coffee shops", "raw_responses": [], "next_cursor": "c2" }
+          }
+        }
+      ]
+    },
+    {
+      "platform": "instagram",
+      "apis": [
+        {
+          "endpoint": "/instagram-profile/",
+          "name": "Instagram Profile",
+          "cost_credit": 1,
+          "pagination": "single",
+          "input": {
+            "usernames": { "type": "string", "required": true, "description": "Username, @handle or URL.", "default_value": "mrbeast", "aliases": ["username"] },
+            "include_about": { "type": "boolean", "required": false, "description": "Add the About section.", "default_value": "false" }
+          },
+          "sample_output": { "formatted": { "usernames": "mrbeast", "profile": { "username": "mrbeast" }, "next_cursor": null } }
+        },
+        {
+          "endpoint": "/instagram-hashtag-posts/",
+          "name": "Instagram Hashtag Posts",
+          "cost_credit": 1,
+          "pagination": "cursor",
+          "input": {
+            "hashtag": { "type": "string", "required": true, "description": "Hashtag without #.", "default_value": "travel" },
+            "session_id": { "type": "string", "required": true, "description": "Your Instagram sessionid cookie.", "default_value": "" },
+            "cursor": { "type": "string", "required": false, "description": "Pagination cursor.", "default_value": "" }
+          },
+          "sample_output": { "formatted": { "hashtag": "travel", "posts": [], "next_cursor": null } }
+        }
+      ]
+    },
+    {
+      "platform": "airbnb",
+      "apis": [
+        {
+          "endpoint": "/airbnb-listings/",
+          "name": "Airbnb Listing Search",
+          "cost_credit": 5,
+          "pagination": "cursor",
+          "long_running": true,
+          "input": {
+            "query": { "type": "string", "required": true, "description": "Location to search.", "default_value": "London", "aliases": ["queries", "location", "q"] },
+            "page_size": { "type": "integer", "required": false, "description": "Listings per page.", "default_value": "20" },
+            "cursor": { "type": "string", "required": false, "description": "Pagination cursor.", "default_value": "" }
+          },
+          "sample_output": { "formatted": { "query": "London", "listings": [], "next_cursor": null } }
+        }
+      ]
+    },
+    {
+      "platform": "truth social",
+      "apis": [
+        {
+          "endpoint": "/truth-social-posts/",
+          "name": "Truth Social Posts",
+          "cost_credit": 2,
+          "pagination": "cursor",
+          "disabled": true,
+          "disabled_reason": "Upstream is down.",
+          "input": {
+            "username": { "type": "string", "required": true, "description": "Account handle.", "default_value": "example" }
+          },
+          "sample_output": { "username": "example", "posts": [], "next_cursor": null }
+        }
+      ]
+    }
+  ]
+}

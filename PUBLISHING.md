@@ -6,7 +6,7 @@ Two packages, one version number: `@scrapier/cli` on npm and `scrapier` on PyPI.
 
 1. **npm:** sign in at npmjs.com, then create the organization `scrapier` (free plan, public packages). That org owns `@scrapier/cli`.
 2. **PyPI:** create an account at pypi.org and turn on 2FA. The first upload of `scrapier` claims the name.
-3. **GitHub:** create `scrapierio-ai/scrapier-cli` and push this repo.
+3. **GitHub:** create `devscraper-007/scrapier-cli` and push this repo.
 
 ## Before every release
 

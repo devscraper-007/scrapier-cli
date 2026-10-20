@@ -27,10 +27,10 @@
     "amazon",
     "google-maps"
   ],
-  "homepage": "https://github.com/scrapierio-ai/scrapier-cli#readme",
+  "homepage": "https://github.com/devscraper-007/scrapier-cli#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scrapierio-ai/scrapier-cli.git",
+    "url": "git+https://github.com/devscraper-007/scrapier-cli.git",
     "directory": "node"
   },
   "license": "MIT",

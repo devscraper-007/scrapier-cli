@@ -20,8 +20,8 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/scrapierio-ai/scrapier-cli#readme"
-Source = "https://github.com/scrapierio-ai/scrapier-cli"
+Homepage = "https://github.com/devscraper-007/scrapier-cli#readme"
+Source = "https://github.com/devscraper-007/scrapier-cli"
 
 [project.scripts]
 scrapier = "scrapier.cli:run_main"

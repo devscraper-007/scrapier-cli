@@ -17,7 +17,7 @@ Or run it without installing: `npx @scrapier/cli me` or `pipx run scrapier me`.
 scrapier login                                    # paste a key from app.scrapier.io/dashboard/api-keys
 scrapier search instagram profile                 # find an endpoint (free)
 scrapier info instagram-profile                   # its parameters and cost (free)
-scrapier run instagram-profile --usernames nasa   # run it (1 credit)
+scrapier run instagram-profile --usernames nasa   # run it (2 credits)
 ```
 
 ## Commands
@@ -30,7 +30,7 @@ scrapier run instagram-profile --usernames nasa   # run it (1 credit)
 | `scrapier platforms` | Every platform and its number of endpoints | free |
 | `scrapier search <words>` | Endpoints whose name contains every word. `--platform tiktok` lists one platform | free |
 | `scrapier info <endpoint>` | Parameters, cost per call, pagination, result key, an example command | free |
-| `scrapier run <endpoint> --<param> <value>` | Runs a scrape | the endpoint's credits per call |
+| `scrapier run <endpoint> --<param> <value>` | Runs a scrape | 1–2 credits per successful call, depending on the endpoint |
 
 `me`, `platforms`, `search` and `info` take `--json` for machine-readable output. `scrapier <command> --help` shows every option.
 
@@ -61,7 +61,7 @@ scrapier run google-maps --queries "coffee shops" --pages 3 --format csv -o shop
 
 ### Credits
 
-Each successful call costs the endpoint's credits, including a page with no results. Failed calls are free. With `--pages 3` you make up to 3 calls. The CLI prints what a run cost when it finishes. A run that can cost 10 credits or more asks first, or needs `--yes` when nothing can answer the question.
+Each successful call costs 1 or 2 credits, depending on the endpoint, however many results it returns, including a page with no results. `scrapier info <endpoint>` shows an endpoint's price, and `scrapier search` lists it in the COST column. Failed calls are free. With `--pages 3` you make up to 3 calls. The CLI prints what a run cost when it finishes. A run that can cost 10 credits or more asks first, or needs `--yes` when nothing can answer the question.
 
 Before a call is sent, the CLI checks the endpoint and parameters against the live catalog. A typo is caught for free instead of becoming a paid failed scrape.
 

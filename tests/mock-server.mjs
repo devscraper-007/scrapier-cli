@@ -6,6 +6,7 @@ import { createServer } from 'node:http';
 import { readFileSync } from 'node:fs';
 
 const CATALOG = readFileSync(new URL('./fixtures/catalog.json', import.meta.url), 'utf8');
+const UNPRICED = CATALOG.replace(/\s*"cost_credit": \d+,/g, '');
 export const GOOD_KEY = 'sk_live_good';
 
 const PLACES = {
@@ -31,6 +32,8 @@ export function startMock() {
         };
 
         if (req.url === '/api/v2/endpoints') return res.end(CATALOG);
+        // The same catalog with no prices, for the default-price fallback.
+        if (req.url === '/unpriced/api/v2/endpoints') return res.end(UNPRICED);
         if (req.url === '/api/v2/me') {
             if (key === GOOD_KEY) return send(200, { user_id: 'u1', email: 'dev@example.com', name: 'Dev', credits: { balance: 42 }, plan: 'Pro' });
             return send(403, { detail: 'Authentication service unavailable or invalid API key.' });

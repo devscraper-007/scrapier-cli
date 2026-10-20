@@ -14,8 +14,11 @@ jobs:
         node: ['18', '22']
         python: ['3.8', '3.13']
         exclude:
-          # setup-python has no 3.8 build for macOS arm64 runners.
+          # setup-python has no 3.8 build for macOS arm64 or the current Ubuntu
+          # image; Windows still covers 3.8.
           - os: macos-latest
+            python: '3.8'
+          - os: ubuntu-latest
             python: '3.8'
     runs-on: ${{ matrix.os }}
     steps:

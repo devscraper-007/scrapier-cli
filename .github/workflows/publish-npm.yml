@@ -1,0 +1,42 @@
+# Publishes node/ to npm as @scrapier/cli when a vX.Y.Z tag is pushed.
+# Uses npm Trusted Publishing (OIDC): no npm token is stored anywhere. The
+# trusted publisher in the package's npm settings names this repo and this
+# file, so renaming either breaks publishing.
+
+name: publish-npm
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Test both CLIs
+        run: node --test tests/cli.test.mjs
+        env:
+          PYTHON: python
+      - name: Tag matches the package version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          version=$(node -p "require('./node/package.json').version")
+          test "v$version" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME != version $version"; exit 1; }
+      # Trusted publishing needs npm 11.5.1 or newer.
+      - run: npm install -g npm@latest
+      - name: Publish
+        working-directory: node
+        run: npm publish --access public --provenance

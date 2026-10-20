@@ -4,7 +4,7 @@ Two packages, one version number: `@scrapier/cli` on npm and `scrapier` on PyPI.
 
 ## One-time setup (owner)
 
-1. **npm:** sign in at npmjs.com, then create the organization `scrapier` (free plan, public packages). That org owns `@scrapier/cli`.
+1. **npm:** the npm user `scrapier` owns the `@scrapier` scope, so no organization is needed.
 2. **PyPI:** create an account at pypi.org and turn on 2FA. The first upload of `scrapier` claims the name.
 3. **GitHub:** create `devscraper-007/scrapier-cli` and push this repo.
 
@@ -17,16 +17,17 @@ Two packages, one version number: `@scrapier/cli` on npm and `scrapier` on PyPI.
 
 ## Publish
 
-```bash
-# npm (from node/)
-cd node
-npm publish --access public          # asks for your npm 2FA code
+Push a version tag. GitHub Actions tests both CLIs and publishes both packages,
+with no tokens (Trusted Publishing on PyPI and npm):
 
-# PyPI (from python/)
-cd ../python
-rm -rf dist && uv build              # or: python3 -m build
-uvx twine upload dist/*              # username __token__, password = a PyPI API token
+```bash
+git tag -a vX.Y.Z -m vX.Y.Z && git push origin vX.Y.Z
 ```
+
+- PyPI: `.github/workflows/publish-pypi.yml`, trusted publisher on pypi.org (account `scrapier`), environment `pypi`.
+- npm: `.github/workflows/publish-npm.yml`, trusted publisher in the `@scrapier/cli` package settings on npmjs.com, environment `npm`.
+
+v0.1.0 on npm was published by hand (`npm login && npm publish --access public` in node/), because npm only lets you add a trusted publisher to a package that already exists.
 
 ## Check the release
 

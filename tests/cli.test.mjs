@@ -12,6 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { startMock, GOOD_KEY } from './mock-server.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const VERSION = JSON.parse(readFileSync(join(ROOT, 'node/package.json'), 'utf8')).version;
 const IMPLS = [
     { name: 'node', cmd: process.execPath, args: [join(ROOT, 'node/bin/scrapier.js')] },
     { name: 'python', cmd: process.env.PYTHON || 'python3', args: ['-m', 'scrapier'] },
@@ -101,7 +102,7 @@ for (const impl of IMPLS) {
         assert.equal(call.method, 'POST');
         assert.equal(call.key, GOOD_KEY);
         assert.deepEqual(call.body, { queries: 'coffee', use_proxy: 'false' });
-        assert.match(call.ua, new RegExp(`^scrapier-cli/0\\.1\\.0 \\(${impl.name}\\)$`));
+        assert.equal(call.ua, `scrapier-cli/${VERSION} (${impl.name})`);
         const out = JSON.parse(r.stdout);
         assert.equal(out.places.length, 2);
         assert.equal(out.next_cursor, 'c2');

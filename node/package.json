@@ -1,6 +1,6 @@
 {
   "name": "@scrapier/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scrapier web-scraping API from your terminal: search endpoints and run scrapes for Instagram, TikTok, Amazon, Google Maps and more.",
   "type": "module",
   "bin": {

@@ -47,7 +47,8 @@ function normalize(body) {
                 slug: String(api.endpoint).replace(/^\/+|\/+$/g, ''),
                 platform: group.platform,
                 name: api.name ?? '',
-                cost: api.cost_credit ?? 1,
+                // An endpoint the catalog has not priced is billed at the default, 2 credits.
+                cost: api.cost_credit ?? 2,
                 pagination: api.pagination ?? 'cursor',
                 disabled: Boolean(api.disabled),
                 disabledReason: api.disabled_reason ?? '',

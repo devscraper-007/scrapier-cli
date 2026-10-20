@@ -30,7 +30,7 @@
         {
           "endpoint": "/instagram-profile/",
           "name": "Instagram Profile",
-          "cost_credit": 1,
+          "cost_credit": 2,
           "pagination": "single",
           "input": {
             "usernames": { "type": "string", "required": true, "description": "Username, @handle or URL.", "default_value": "mrbeast", "aliases": ["username"] },
@@ -41,7 +41,7 @@
         {
           "endpoint": "/instagram-hashtag-posts/",
           "name": "Instagram Hashtag Posts",
-          "cost_credit": 1,
+          "cost_credit": 2,
           "pagination": "cursor",
           "input": {
             "hashtag": { "type": "string", "required": true, "description": "Hashtag without #.", "default_value": "travel" },
@@ -58,7 +58,7 @@
         {
           "endpoint": "/airbnb-listings/",
           "name": "Airbnb Listing Search",
-          "cost_credit": 5,
+          "cost_credit": 2,
           "pagination": "cursor",
           "long_running": true,
           "input": {

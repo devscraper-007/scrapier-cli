@@ -65,7 +65,7 @@ def _normalize(body):
                 "slug": str(api.get("endpoint")).strip("/"),
                 "platform": group.get("platform"),
                 "name": api.get("name") or "",
-                "cost": 1 if cost is None else cost,
+                "cost": 2 if cost is None else cost,  # unpriced endpoints default to 2 credits
                 "pagination": api.get("pagination") or "cursor",
                 "disabled": bool(api.get("disabled")),
                 "disabled_reason": api.get("disabled_reason") or "",

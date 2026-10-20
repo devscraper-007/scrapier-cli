@@ -12,7 +12,7 @@ Commands:
   platforms          List platforms and their endpoint counts (free)
   search <words>     Find endpoints, e.g. scrapier search instagram posts (free)
   info <endpoint>    Show an endpoint's parameters, cost and result key (free)
-  run <endpoint>     Run a scrape (each successful call costs credits)
+  run <endpoint>     Run a scrape (1 or 2 credits per successful call)
 
 Global options:
   --api-key <key>    Use this key instead of SCRAPIER_API_KEY or the saved one
@@ -91,8 +91,9 @@ Options:
   -p, --param <k=v>    Pass a parameter whose name clashes with an option above
   --api-key <key>      Use this key for this run
 
-Billing: each successful call costs the endpoint's cost_credit, including a
-page with no results. Failed calls are free. Every page is a call.
+Billing: each successful call costs the endpoint's cost_credit (1 or 2
+credits, depending on the endpoint), however many results it returns,
+including a page with no results. Failed calls are free. Every page is a call.
 
 Examples:
   scrapier run instagram-profile --usernames mrbeast

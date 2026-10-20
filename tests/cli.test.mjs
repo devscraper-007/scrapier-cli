@@ -165,6 +165,7 @@ for (const impl of IMPLS) {
         assert.equal(mock.calls('/instagram-profile/').length, 1);
         assert.match(r.stderr, /returns a single result; ignoring --pages/);
         assert.equal(r.stdout.trim().split('\n').length, 1);
+        assert.match(r.stderr, /Done: 1 call, .*2 credits\./);
     });
 
     t('aliases, dashes and -p map to real params; booleans normalize', async () => {
@@ -199,14 +200,26 @@ for (const impl of IMPLS) {
     });
 
     t('runs that can cost 10+ credits need --yes when not interactive', async () => {
-        let r = await run(['run', 'airbnb-listings', '--query', 'x', '--pages', '2']);
+        let r = await run(['run', 'airbnb-listings', '--query', 'x', '--pages', '4']);
+        assert.equal(r.code, 0, r.stderr);
+        assert.match(r.stderr, /Done: 2 calls, 2 listings, 4 credits\./);
+        r = await run(['run', 'airbnb-listings', '--query', 'x', '--pages', '5']);
         assert.equal(r.code, 1);
-        assert.match(r.stderr, /can cost up to 10 credits \(5 credits per call x 2 pages\)\. Re-run with --yes/);
+        assert.match(r.stderr, /can cost up to 10 credits \(2 credits per call x 5 pages\)\. Re-run with --yes/);
         assert.equal(mock.calls('/airbnb-listings/').length, 0);
-        r = await run(['run', 'airbnb-listings', '--query', 'x', '--pages', '2', '--yes']);
+        r = await run(['run', 'airbnb-listings', '--query', 'x', '--pages', '5', '--yes']);
         assert.equal(r.code, 0, r.stderr);
         assert.equal(mock.calls('/airbnb-listings/').length, 2);
-        assert.match(r.stderr, /Done: 2 calls, 2 listings, 10 credits\./);
+        assert.match(r.stderr, /Done: 2 calls, 2 listings, 4 credits\./);
+    });
+
+    t('an endpoint the catalog does not price costs 2 credits', async () => {
+        const env = { ...KEY, SCRAPIER_API_BASE: mock.base.replace('/api/v2', '/unpriced/api/v2') };
+        let r = await run(['info', 'google-maps', '--json'], { env });
+        assert.equal(r.code, 0, r.stderr);
+        assert.equal(JSON.parse(r.stdout).cost_credit, 2);
+        r = await run(['info', 'google-maps'], { env });
+        assert.match(r.stdout, /Cost: +2 credits per successful call/);
     });
 
     t('429 waits for Retry-After and retries', async () => {

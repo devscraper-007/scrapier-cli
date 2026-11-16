@@ -3,7 +3,7 @@
 
 import { VERSION } from './version.js';
 
-export const DEFAULT_BASE = 'https://proxy.scrapier.io/api/v2';
+export const DEFAULT_BASE = 'https://api.scrapier.io/api/v2';
 export const KEYS_URL = 'https://app.scrapier.io/dashboard/api-keys';
 export const BILLING_URL = 'https://app.scrapier.io/dashboard/billing';
 

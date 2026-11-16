@@ -11,7 +11,7 @@ import urllib.request
 
 from . import __version__
 
-DEFAULT_BASE = "https://proxy.scrapier.io/api/v2"
+DEFAULT_BASE = "https://api.scrapier.io/api/v2"
 KEYS_URL = "https://app.scrapier.io/dashboard/api-keys"
 BILLING_URL = "https://app.scrapier.io/dashboard/billing"
 

@@ -1,5 +1,5 @@
 {
-  "base_url": "https://proxy.scrapier.io/api/v2",
+  "base_url": "https://api.scrapier.io/api/v2",
   "auth": { "type": "apiKey", "header": "X-API-Key" },
   "billing": "Credits are charged per successful call; each endpoint lists its cost_credit per call. Failed calls are free.",
   "endpoints": [

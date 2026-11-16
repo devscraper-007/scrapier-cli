@@ -1,4 +1,4 @@
-// A stand-in for proxy.scrapier.io/api/v2, with scenarios picked by the input
+// A stand-in for api.scrapier.io/api/v2, with scenarios picked by the input
 // value (queries=429 answers 429 once, and so on). Every call is logged so tests
 // can check what the CLI sent and how often it retried.
 

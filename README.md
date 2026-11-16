@@ -91,7 +91,7 @@ AI coding agents can also install the [Scrapier agent skills](https://docs.scrap
 | Variable | Use |
 |---|---|
 | `SCRAPIER_API_KEY` | API key, instead of `scrapier login` |
-| `SCRAPIER_API_BASE` | API base URL (default `https://proxy.scrapier.io/api/v2`) |
+| `SCRAPIER_API_BASE` | API base URL (default `https://api.scrapier.io/api/v2`) |
 | `SCRAPIER_CONFIG_DIR` | Where the saved key lives |
 | `SCRAPIER_CACHE_DIR` | Where the endpoint catalog is cached (15 minutes) |
 
